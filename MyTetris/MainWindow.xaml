@@ -1,0 +1,557 @@
+﻿<Window x:Class="MyTetris.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyTetris"
+        mc:Ignorable="d"
+        Title="Tetris" Height="800" Width="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        KeyDown="WindowKeyDown"
+        FontFamily="Silkscreen">
+
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FFB2FF00" Offset="0.0" />
+            <GradientStop Color="#FF515151" Offset="1.0" />
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Window.Effect>
+        <BlurEffect Radius="2"/>
+    </Window.Effect>
+
+    <Window.Resources>
+        
+        <Storyboard x:Key="ShadowAnimation">
+            <DoubleAnimation Storyboard.TargetName="Tetris"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             From="1" To="0" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+            
+            <DoubleAnimation Storyboard.TargetName="MadeBy"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             From="0" To="-1" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="Tetromino"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             From="0" To="-1" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="Pentomino"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             From="0" To="-1" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+            
+            <DoubleAnimation Storyboard.TargetName="Score"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             From="0" To="-1" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="ScoreText"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             From="0" To="-1" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="Mode"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             From="0" To="-1" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="ModeText"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             From="0" To="-1" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="LevelText"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             From="0" To="-1" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="Level"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             From="0" To="-1" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="Next"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             From="0" To="-1" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="Lines"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             From="0" To="-1" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="LinesText"
+                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                 From="0" To="-1" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="GameOver"
+                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                 From="0" To="-1" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="PlayAgain"
+                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                 From="0" To="-1" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="MainMenu"
+                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                 From="0" To="-1" Duration="0:0:0.01" AutoReverse="True" RepeatBehavior="Forever"/>
+
+        </Storyboard>
+        
+        <ImageBrush x:Key="BackgroundImageBrush" ImageSource="OtherAssets/Background.jpg" Stretch="UniformToFill"/>
+
+
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid Name="MenuGrid"
+              Visibility="Visible"
+              Opacity="0.8"
+              Background="{StaticResource BackgroundImageBrush}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            
+
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        Grid.Row="1"
+                        ClipToBounds="True">
+
+                <TextBlock Text="Tetris"
+                           Name ="Tetris"
+                           FontSize="160"
+                           TextAlignment="Center"
+                           Foreground="White">
+
+                    <TextBlock.RenderTransform>
+                        <TranslateTransform X="0" Y="0"/>
+                    </TextBlock.RenderTransform>
+
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                    </TextBlock.Effect>
+
+                </TextBlock>
+
+                <TextBlock Text="Made by Bilous Yehor"
+                           Name="MadeBy"
+                           FontSize="40"
+                           TextAlignment="Center"
+                           Foreground="White">
+                    
+                    <TextBlock.RenderTransform>
+                        <TranslateTransform X="0" Y="0"/>
+                    </TextBlock.RenderTransform>
+
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                    </TextBlock.Effect>
+             
+                </TextBlock>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Grid.Row="2"
+                        Height="100"
+                        ClipToBounds="True">
+
+                <Button Height="100"
+                        Width="300"
+                        Background="Transparent"
+                        BorderThickness="4"
+                        BorderBrush="Blue"
+                        Margin="0,0,0,0"
+                        Padding="5"
+                        Click="PlayTetraminoClick">
+
+                    <TextBlock Text="Tetromino"
+                               FontSize="35"
+                               TextAlignment="Center"
+                               Foreground="White"
+                               Name="Tetromino">
+                        
+                        <TextBlock.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </TextBlock.RenderTransform>
+
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                        </TextBlock.Effect>
+
+                    </TextBlock>
+                </Button>
+
+                <Button Height="100"
+                        Width="300"
+                        BorderThickness="4"
+                        BorderBrush="Red"
+                        Background="Transparent"
+                        Margin="20,0,0,0"
+                        Padding="5"
+                        Click="PlayPentominoClick">
+
+                    <TextBlock Text="Pentomino"
+                               FontSize="35"
+                               TextAlignment="Center"
+                               Foreground="White"
+                               Name="Pentomino">
+                        
+                        <TextBlock.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </TextBlock.RenderTransform>
+
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                        </TextBlock.Effect>
+                        
+                    </TextBlock>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Grid Name="GameGrid"
+              Visibility="Hidden"
+              Opacity="0.8"
+              Background="{StaticResource BackgroundImageBrush}">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1"
+                        Background="Blue"
+                        Width="260"
+                        Height="520">
+                <Canvas Name="GameFieldCanvas"
+                        Background="Black"
+                        Width="250"
+                        Height="510"
+                        Margin="0,5" 
+                        ClipToBounds="True"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        Grid.Column="2"
+                        Background="Blue"
+                        Height="110"
+                        Margin="10, 80, 10, 0"
+                        VerticalAlignment="Top">
+
+                <StackPanel Background="Black"
+                            Height="100"
+                            Margin="5, 5, 5, 0">
+
+                    <TextBlock Foreground="Cyan"
+                               Height="50"
+                               FontSize="35"
+                               Text="Score:"
+                               Name="Score"
+                               Margin="10, 0, 10, 0"
+                               TextAlignment="Left">
+                        <TextBlock.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </TextBlock.RenderTransform>
+
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+
+                    <TextBlock Name="ScoreText"
+                               Foreground="Cyan"
+                               Height="50"
+                               FontSize="35"
+                               Text=""
+                               Margin="10, 0, 10, 0"
+                               TextAlignment="Left">
+                        <TextBlock.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </TextBlock.RenderTransform>
+
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        Grid.Column="0"
+                        Background="Blue"
+                        Height="310"
+                        Margin="10, 0, 10, 0">
+                
+                <StackPanel Background="Black" 
+                            Height="300"
+                            Margin="5, 5, 5, 0">
+
+                    <TextBlock Foreground="Cyan"
+                               Height="50"
+                               Name="Next"
+                               FontSize="40"
+                               Text="Next: "
+                               Margin="10, 0, 10, 0"
+                               TextAlignment="Left">
+                        
+                        <TextBlock.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </TextBlock.RenderTransform>
+
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+
+                    <Image Name="NextImage"
+                           Margin="20"
+                           Width="200"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        Grid.Column="2"
+                        Background="Blue"
+                        Height="110"
+                        Margin="10, 0, 10, 0"
+                        VerticalAlignment="Center">        
+
+                <StackPanel Background="Black"
+                            Height="100"
+                            Margin="5, 5, 5, 0">
+
+                    <TextBlock Foreground="Cyan"
+                               Height="50"
+                               FontSize="35"
+                               Name="Lines"
+                               Text="Lines:"
+                               Margin="10, 0, 10, 0"
+                               TextAlignment="Left">
+                        <TextBlock.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </TextBlock.RenderTransform>
+
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+
+                    <TextBlock Name="LinesText"
+                               Foreground="Cyan"
+                               Height="50"
+                               FontSize="35"
+                               Text=""
+                               Margin="10, 0, 10, 0"
+                               TextAlignment="Left">
+                        <TextBlock.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </TextBlock.RenderTransform>
+
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        Grid.Column="2"
+                        Background="Blue"
+                        Height="110"
+                        Margin="10, 250, 10, 0">
+
+                <StackPanel Background="Black"
+                            Height="100"
+                            Margin="5, 5, 5, 0">
+
+                    <TextBlock Foreground="Cyan"
+                               Height="50"
+                               FontSize="35"
+                               Name="Level"
+                               Text="Level:"
+                               Margin="10, 0, 10, 0"
+                               TextAlignment="Left">
+                        <TextBlock.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </TextBlock.RenderTransform>
+
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+
+                    <TextBlock Name="LevelText"
+                               Foreground="Cyan"
+                               Height="50"
+                               FontSize="35"
+                               Text=""
+                               Margin="10, 0, 10, 0"
+                               TextAlignment="Left">
+                        <TextBlock.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </TextBlock.RenderTransform>
+
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0"
+                        Grid.Column="1"
+                        Background="Blue"
+                        Height="110"
+                        Margin="10, 0, 10, 0">        
+
+                <StackPanel Background="Black"
+                            Height="100"
+                            Margin="5, 5, 5, 0">
+
+                    <TextBlock Foreground="Cyan"
+                               Height="50"
+                               FontSize="30"
+                               Name="Mode"
+                               Text="Mode:"
+                               Margin="10, 0, 10, 0"
+                               TextAlignment="Left">
+                        <TextBlock.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </TextBlock.RenderTransform>
+
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+
+                    <TextBlock Name="ModeText"
+                               Foreground="Cyan"
+                               Height="50"
+                               FontSize="30"
+                               Text=""
+                               Margin="10, 0, 10, 0"
+                               TextAlignment="Left">
+                        <TextBlock.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </TextBlock.RenderTransform>
+
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Name="GameOverGrid"
+              Background="#CC000000"
+              Visibility="Hidden"
+              Opacity="0.8">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1">
+                
+                <TextBlock Foreground="Cyan"
+                           FontSize="80"
+                           Text="Game Over"
+                           Name="GameOver"
+                           Margin="0, 40, 0, 0"
+                           TextAlignment="Center">
+                    
+                    <TextBlock.RenderTransform>
+                        <TranslateTransform X="0" Y="0"/>
+                    </TextBlock.RenderTransform>
+
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                    </TextBlock.Effect>
+
+                </TextBlock>
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0, 60"
+                            Height="100">
+
+                    <Button Background="Transparent"
+                            Margin="0,0,50,0"
+                            Padding="5"
+                            Click="MainMenuClick"
+                            BorderThickness="4"
+                            BorderBrush="Red">
+                        
+                        <TextBlock Text="Main Menu"
+                                   FontSize="35"
+                                   TextAlignment="Center"
+                                   Foreground="White"
+                                   Name="MainMenu">
+
+                            <TextBlock.RenderTransform>
+                                <TranslateTransform X="0" Y="0"/>
+                            </TextBlock.RenderTransform>
+
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                            </TextBlock.Effect>
+
+                        </TextBlock>
+                    </Button>
+
+                    <Button Background="Transparent"
+                            Margin="0,0,0,0"
+                            Padding="5"
+                            Click="PlayAgainClick"
+                            BorderThickness="4"
+                            BorderBrush="Blue">
+                        
+                        <TextBlock Text="Play Again"
+                                   FontSize="35"
+                                   TextAlignment="Center"
+                                   Foreground="White"
+                                   Name="PlayAgain">
+
+                            <TextBlock.RenderTransform>
+                                <TranslateTransform X="0" Y="0"/>
+                            </TextBlock.RenderTransform>
+
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="#FF64FF64" ShadowDepth="5" BlurRadius="10" Opacity="1"/>
+                            </TextBlock.Effect>
+
+                        </TextBlock>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource ShadowAnimation}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+</Window>

@@ -1,0 +1,109 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="AssetsBlocks\BlockI.png" />
+    <None Remove="AssetsBlocks\BlockJ.png" />
+    <None Remove="AssetsBlocks\BlockL.png" />
+    <None Remove="AssetsBlocks\BlockO.png" />
+    <None Remove="AssetsBlocks\BlockPentoF.png" />
+    <None Remove="AssetsBlocks\BlockPentoG.png" />
+    <None Remove="AssetsBlocks\BlockPentoI.png" />
+    <None Remove="AssetsBlocks\BlockPentoJ.png" />
+    <None Remove="AssetsBlocks\BlockPentoL.png" />
+    <None Remove="AssetsBlocks\BlockPentoP.png" />
+    <None Remove="AssetsBlocks\BlockPentoRF.png" />
+    <None Remove="AssetsBlocks\BlockPentoRG.png" />
+    <None Remove="AssetsBlocks\BlockPentoRL.png" />
+    <None Remove="AssetsBlocks\BlockPentoRP.png" />
+    <None Remove="AssetsBlocks\BlockPentoRY.png" />
+    <None Remove="AssetsBlocks\BlockPentoS.png" />
+    <None Remove="AssetsBlocks\BlockPentoT.png" />
+    <None Remove="AssetsBlocks\BlockPentoU.png" />
+    <None Remove="AssetsBlocks\BlockPentoW.png" />
+    <None Remove="AssetsBlocks\BlockPentoX.png" />
+    <None Remove="AssetsBlocks\BlockPentoY.png" />
+    <None Remove="AssetsBlocks\BlockPentoZ.png" />
+    <None Remove="AssetsBlocks\BlockS.png" />
+    <None Remove="AssetsBlocks\BlockT.png" />
+    <None Remove="AssetsBlocks\BlockZ.png" />
+    <None Remove="AssetsTiles\BlueBlock.png" />
+    <None Remove="AssetsTiles\BrownBlock.png" />
+    <None Remove="AssetsTiles\CyanBlock.png" />
+    <None Remove="AssetsTiles\DarkBlueBlock.png" />
+    <None Remove="AssetsTiles\DarkGreenBlock.png" />
+    <None Remove="AssetsTiles\DarkPinkBlock.png" />
+    <None Remove="AssetsTiles\EmptyBlock.png" />
+    <None Remove="AssetsTiles\GoldBlock.png" />
+    <None Remove="AssetsTiles\GrayBlock.png" />
+    <None Remove="AssetsTiles\GreenBlock.png" />
+    <None Remove="AssetsTiles\OrangeBlock.png" />
+    <None Remove="AssetsTiles\PinkBlock.png" />
+    <None Remove="AssetsTiles\PurpleBlock.png" />
+    <None Remove="AssetsTiles\RedBlock.png" />
+    <None Remove="AssetsTiles\RepBlock.png" />
+    <None Remove="AssetsTiles\SkinBlock.png" />
+    <None Remove="AssetsTiles\SkyBlock.png" />
+    <None Remove="AssetsTiles\WhiteBlock.png" />
+    <None Remove="AssetsTiles\YellowBlock.png" />
+    <None Remove="Background.jpg" />
+    <None Remove="OtherAssets\Gamepad.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="AssetsBlocks\BlockI.png" />
+    <Resource Include="AssetsBlocks\BlockJ.png" />
+    <Resource Include="AssetsBlocks\BlockL.png" />
+    <Resource Include="AssetsBlocks\BlockO.png" />
+    <Resource Include="AssetsBlocks\BlockPentoF.png" />
+    <Resource Include="AssetsBlocks\BlockPentoG.png" />
+    <Resource Include="AssetsBlocks\BlockPentoI.png" />
+    <Resource Include="AssetsBlocks\BlockPentoJ.png" />
+    <Resource Include="AssetsBlocks\BlockPentoL.png" />
+    <Resource Include="AssetsBlocks\BlockPentoP.png" />
+    <Resource Include="AssetsBlocks\BlockPentoRF.png" />
+    <Resource Include="AssetsBlocks\BlockPentoRG.png" />
+    <Resource Include="AssetsBlocks\BlockPentoRL.png" />
+    <Resource Include="AssetsBlocks\BlockPentoRP.png" />
+    <Resource Include="AssetsBlocks\BlockPentoRY.png" />
+    <Resource Include="AssetsBlocks\BlockPentoS.png" />
+    <Resource Include="AssetsBlocks\BlockPentoT.png" />
+    <Resource Include="AssetsBlocks\BlockPentoU.png" />
+    <Resource Include="AssetsBlocks\BlockPentoW.png" />
+    <Resource Include="AssetsBlocks\BlockPentoX.png" />
+    <Resource Include="AssetsBlocks\BlockPentoY.png" />
+    <Resource Include="AssetsBlocks\BlockPentoZ.png" />
+    <Resource Include="AssetsBlocks\BlockS.png" />
+    <Resource Include="AssetsBlocks\BlockT.png" />
+    <Resource Include="AssetsBlocks\BlockZ.png" />
+    <Resource Include="AssetsTiles\BlueBlock.png" />
+    <Resource Include="AssetsTiles\BrownBlock.png" />
+    <Resource Include="AssetsTiles\CyanBlock.png" />
+    <Resource Include="AssetsTiles\DarkBlueBlock.png" />
+    <Resource Include="AssetsTiles\DarkGreenBlock.png" />
+    <Resource Include="AssetsTiles\DarkPinkBlock.png" />
+    <Resource Include="AssetsTiles\EmptyBlock.png" />
+    <Resource Include="AssetsTiles\GoldBlock.png" />
+    <Resource Include="AssetsTiles\GrayBlock.png" />
+    <Resource Include="AssetsTiles\GreenBlock.png" />
+    <Resource Include="AssetsTiles\OrangeBlock.png" />
+    <Resource Include="AssetsTiles\PinkBlock.png" />
+    <Resource Include="AssetsTiles\PurpleBlock.png" />
+    <Resource Include="AssetsTiles\RedBlock.png" />
+    <Resource Include="AssetsTiles\RepBlock.png" />
+    <Resource Include="AssetsTiles\SkinBlock.png" />
+    <Resource Include="AssetsTiles\SkyBlock.png" />
+    <Resource Include="AssetsTiles\WhiteBlock.png" />
+    <Resource Include="AssetsTiles\YellowBlock.png" />
+    <Resource Include="OtherAssets\Background.jpg" />
+    <Resource Include="OtherAssets\Gamepad.png" />
+  </ItemGroup>
+
+</Project>

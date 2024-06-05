@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="aboba.txt" />
     <None Remove="AssetsBlocks\BlockI.png" />
     <None Remove="AssetsBlocks\BlockJ.png" />
     <None Remove="AssetsBlocks\BlockL.png" />
@@ -58,6 +59,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="aboba.txt" />
     <Resource Include="AssetsBlocks\BlockI.png" />
     <Resource Include="AssetsBlocks\BlockJ.png" />
     <Resource Include="AssetsBlocks\BlockL.png" />

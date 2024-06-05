@@ -23,9 +23,8 @@ namespace MyTetris
         /// <summary>
         /// 
         /// </summary>
-        private readonly string filePath = "TextFile1.txt";
+        private string filePath = "aboba.txt";
 
-        private int k = 0;
 
         public Game(bool isTetramino)
         {
@@ -91,7 +90,7 @@ namespace MyTetris
                 {
                     for (int j = 0; j < GameGrid.Columns; j++)
                     {
-                        writer.Write(GameGrid.grid[i, j] + " ");
+                        writer.Write("dadsdaasd");
                     }
                     writer.WriteLine();
                 }

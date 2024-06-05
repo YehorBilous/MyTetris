@@ -9,6 +9,7 @@ namespace MyTetris
 
         private readonly int[,] grid;
 
+        //indexer
         public int this[int row, int column]
         {
             get { return grid[row, column]; }

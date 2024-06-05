@@ -1,4 +1,5 @@
-﻿
+﻿using System.IO;
+
 namespace MyTetris
 {
     public class Game
@@ -18,6 +19,13 @@ namespace MyTetris
         public int BlockDelay { get; private set; }
 
         public BlockQueue BlockQueue { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly string filePath = "TextFile1.txt";
+
+        private int k = 0;
 
         public Game(bool isTetramino)
         {
@@ -70,7 +78,23 @@ namespace MyTetris
             }
             else
             {
+                WriteFile();
                 BlockUpdate();
+            }
+        }
+
+        private void WriteFile() 
+        {
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                for (int i = 0; i < GameGrid.Rows; i++)
+                {
+                    for (int j = 0; j < GameGrid.Columns; j++)
+                    {
+                        writer.Write(GameGrid.grid[i, j] + " ");
+                    }
+                    writer.WriteLine();
+                }
             }
         }
 

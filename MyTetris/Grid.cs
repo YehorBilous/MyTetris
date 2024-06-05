@@ -7,7 +7,7 @@ namespace MyTetris
 
         public int Columns { get;}
 
-        private readonly int[,] grid;
+        public readonly int[,] grid;
 
         //indexer
         public int this[int row, int column]

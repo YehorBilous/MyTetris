@@ -53,6 +53,18 @@ namespace MyTetris
             }
         }
 
+        public Position[] TilePositionsList()
+        {
+            var list = new Position[Tiles[rotationState].Length];
+            int k = 0;
+            foreach (var pos in Tiles[rotationState])
+            {
+                list[k] = new Position(pos.Row + offset.Row, pos.Column + offset.Column);
+                k++;
+            }
+            return list;
+        }
+
         public void Reset()
         {
             rotationState = 0;

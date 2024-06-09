@@ -142,7 +142,7 @@ namespace MyTetris
         {
             ScoreText.Text = $"{game.Score}";
             LinesText.Text = $"{game.Lines}";
-            LevelText.Text = $"{Math.Min(game.Score / 10000, 9)}";
+            LevelText.Text = $"{Math.Min(game.Score / 100, 9)}";
         }
 
         private void DrawGhostBlock(Block block)
@@ -194,6 +194,9 @@ namespace MyTetris
                     break;
                 case Key.Space:
                     game.DropBlock();
+                    break;
+                case Key.L:
+                    game.WriteFile();
                     break;
                 default:
                     return;

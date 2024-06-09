@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 
 namespace MyTetris
 {
@@ -20,11 +21,7 @@ namespace MyTetris
 
         public BlockQueue BlockQueue { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        private string filePath = "aboba.txt";
-
+        private string filePath = "C:\\Users\\bilou\\OneDrive\\Desktop\\MyTetris\\MyTetris\\MyTetris\\matrix.txt";
 
         public Game(bool isTetramino)
         {
@@ -52,6 +49,34 @@ namespace MyTetris
 
 
 
+        public void WriteFile()
+        {
+            Position[] list = currentBlock.TilePositionsList();
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                for (int i = 0; i < GameGrid.Rows; i++)
+                {
+                    for (int j = 0; j < GameGrid.Columns; j++)
+                    {
+                        bool block = false;
+                        foreach (var pos in list)
+                        {
+                            if (pos.Row == i && pos.Column == j)
+                            {
+                                writer.Write(currentBlock.Id + " ");
+                                block = true;
+                            }
+                        }
+                        if (!block)
+                        {
+                            writer.Write(GameGrid[i, j] + " ");
+                        }
+                    }
+                    writer.WriteLine();
+                }
+            }
+        }
+
         private bool BlockFits()
         {
             foreach (var pos in CurrentBlock.TilePositions())
@@ -77,23 +102,7 @@ namespace MyTetris
             }
             else
             {
-                WriteFile();
                 BlockUpdate();
-            }
-        }
-
-        private void WriteFile() 
-        {
-            using (StreamWriter writer = new StreamWriter(filePath))
-            {
-                for (int i = 0; i < GameGrid.Rows; i++)
-                {
-                    for (int j = 0; j < GameGrid.Columns; j++)
-                    {
-                        writer.Write("dadsdaasd");
-                    }
-                    writer.WriteLine();
-                }
             }
         }
 
@@ -211,7 +220,7 @@ namespace MyTetris
 
         public void DecreaseBlockDelay()
         {
-            BlockDelay = Math.Max(50, 500 - (Score / 10000) * 50);
+            BlockDelay = Math.Max(50, 500 - (Score / 100) * 50);
         }
     }
 }
